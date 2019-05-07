@@ -1,0 +1,97 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "ApplicationName": {
+                    "description": "The name of the application to which you want to add the input processing configuration.",
+                    "maxLength": 128,
+                    "minLength": 1,
+                    "pattern": "[a-zA-Z0-9_.-]+",
+                    "type": "string"
+                },
+                "CurrentApplicationVersionId": {
+                    "description": "The version of the application to which you want to add the input processing configuration. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned.",
+                    "maximum": 999999999,
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "InputId": {
+                    "description": "The ID of the input configuration to add the input processing configuration to. You can get a list of the input IDs for an application using the <a>DescribeApplication</a> operation.",
+                    "maxLength": 50,
+                    "minLength": 1,
+                    "pattern": "[a-zA-Z0-9_.-]+",
+                    "type": "string"
+                },
+                "InputProcessingConfiguration": {
+                    "description": "The <a>InputProcessingConfiguration</a> to add to the application.",
+                    "properties": {
+                        "InputLambdaProcessor": {
+                            "description": "The <a>InputLambdaProcessor</a> that is used to preprocess the records in the stream before being processed by your application code.",
+                            "properties": {
+                                "ResourceARN": {
+                                    "description": "The ARN of the AWS Lambda function that operates on records in the stream.",
+                                    "maxLength": 2048,
+                                    "minLength": 1,
+                                    "pattern": "arn:.*",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "ResourceARN"
+                            ],
+                            "type": "object"
+                        }
+                    },
+                    "required": [
+                        "InputLambdaProcessor"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "ApplicationName",
+                "CurrentApplicationVersionId",
+                "InputId",
+                "InputProcessingConfiguration"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,397 @@
+{
+    "title": "Amazon Kinesis Analytics",
+    "description": "Documentation for Kinesis Data Analytics API v2",
+    "docsUrl": "https://docs.aws.amazon.com/kinesisanalytics/",
+    "url": "https://api.apis.guru/v2/specs/amazonaws.com/kinesisanalyticsv2/2018-05-23/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://kinesisanalytics.amazonaws.com/",
+                    "http://kinesisanalytics.amazonaws.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "hmac": {
+                "label": "Authorization (hmac)",
+                "viewClass": "TextFieldView",
+                "note": "Amazon Signature authorization v4"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "AddApplicationCloudWatchLoggingOption": {
+            "main": "./lib/actions/AddApplicationCloudWatchLoggingOption.js",
+            "title": "Adds an Amazon CloudWatch log stream to monitor application configuration errors.",
+            "description": "Adds an Amazon CloudWatch log stream to monitor application configuration errors.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AddApplicationCloudWatchLoggingOption.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AddApplicationInput": {
+            "main": "./lib/actions/AddApplicationInput.js",
+            "title": "<p> Adds a streaming source to your SQL-based Amazon Kinesis Data Analytics application. </p> <p>You can add a streaming source when you create an application, or you can use this operation to add a streaming source after you create an application. For more information, see <a>CreateApplication</a>.</p> <p>Any configuration update, including adding a streaming source using this operation, results in a new version of the application. You can use the <a>DescribeApplication</a> operation to find the current application version. </p>",
+            "description": "<p> Adds a streaming source to your SQL-based Amazon Kinesis Data Analytics application. </p> <p>You can add a streaming source when you create an application, or you can use this operation to add a streaming source after you create an application. For more information, see <a>CreateApplication</a>.</p> <p>Any configuration update, including adding a streaming source using this operation, results in a new version of the application. You can use the <a>DescribeApplication</a> operation to find the current application version. </p>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AddApplicationInput.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AddApplicationInputProcessingConfiguration": {
+            "main": "./lib/actions/AddApplicationInputProcessingConfiguration.js",
+            "title": "Adds an <a>InputProcessingConfiguration</a> to an SQL-based Kinesis Data Analytics application. An input processor pre-processes records on the input stream before the application's SQL code executes. Currently, the only input processor available is <a href=\"https://aws.amazon.com/documentation/lambda/\">AWS Lambda</a>.",
+            "description": "Adds an <a>InputProcessingConfiguration</a> to an SQL-based Kinesis Data Analytics application. An input processor pre-processes records on the input stream before the application's SQL code executes. Currently, the only input processor available is <a href=\"https://aws.amazon.com/documentation/lambda/\">AWS Lambda</a>.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AddApplicationInputProcessingConfiguration.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AddApplicationOutput": {
+            "main": "./lib/actions/AddApplicationOutput.js",
+            "title": "<p>Adds an external destination to your SQL-based Amazon Kinesis Data Analytics application.</p> <p>If you want Kinesis Data Analytics to deliver data from an in-application stream within your application to an external destination (such as an Kinesis data stream, a Kinesis Data Firehose delivery stream, or an AWS Lambda function), you add the relevant configuration to your application using this operation. You can configure one or more outputs for your application. Each output configuration maps an in-application stream and an external destination.</p> <p> You can use one of the output configurations to deliver data from your in-application error stream to an external destination so that you can analyze the errors. </p> <p> Any configuration update, including adding a streaming source using this operation, results in a new version of the application. You can use the <a>DescribeApplication</a> operation to find the current application version.</p>",
+            "description": "<p>Adds an external destination to your SQL-based Amazon Kinesis Data Analytics application.</p> <p>If you want Kinesis Data Analytics to deliver data from an in-application stream within your application to an external destination (such as an Kinesis data stream, a Kinesis Data Firehose delivery stream, or an AWS Lambda function), you add the relevant configuration to your application using this operation. You can configure one or more outputs for your application. Each output configuration maps an in-application stream and an external destination.</p> <p> You can use one of the output configurations to deliver data from your in-application error stream to an external destination so that you can analyze the errors. </p> <p> Any configuration update, including adding a streaming source using this operation, results in a new version of the application. You can use the <a>DescribeApplication</a> operation to find the current application version.</p>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AddApplicationOutput.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AddApplicationReferenceDataSource": {
+            "main": "./lib/actions/AddApplicationReferenceDataSource.js",
+            "title": "<p>Adds a reference data source to an existing SQL-based Amazon Kinesis Data Analytics application.</p> <p>Kinesis Data Analytics reads reference data (that is, an Amazon S3 object) and creates an in-application table within your application. In the request, you provide the source (S3 bucket name and object key name), name of the in-application table to create, and the necessary mapping information that describes how data in an Amazon S3 object maps to columns in the resulting in-application table.</p>",
+            "description": "<p>Adds a reference data source to an existing SQL-based Amazon Kinesis Data Analytics application.</p> <p>Kinesis Data Analytics reads reference data (that is, an Amazon S3 object) and creates an in-application table within your application. In the request, you provide the source (S3 bucket name and object key name), name of the in-application table to create, and the necessary mapping information that describes how data in an Amazon S3 object maps to columns in the resulting in-application table.</p>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AddApplicationReferenceDataSource.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "CreateApplication": {
+            "main": "./lib/actions/CreateApplication.js",
+            "title": "<p>Creates an Amazon Kinesis Data Analytics application. For information about creating a Kinesis Data Analytics application, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/Java/creating-app.html\">Creating an Application</a>. </p> <note> <p>SQL is not enabled for this private beta release. Using SQL parameters (such as <a>SqlApplicationConfiguration</a>) will result in an error.</p> </note>",
+            "description": "<p>Creates an Amazon Kinesis Data Analytics application. For information about creating a Kinesis Data Analytics application, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/Java/creating-app.html\">Creating an Application</a>. </p> <note> <p>SQL is not enabled for this private beta release. Using SQL parameters (such as <a>SqlApplicationConfiguration</a>) will result in an error.</p> </note>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/CreateApplication.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "CreateApplicationSnapshot": {
+            "main": "./lib/actions/CreateApplicationSnapshot.js",
+            "title": "Creates a snapshot of the application's state data.",
+            "description": "Creates a snapshot of the application's state data.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/CreateApplicationSnapshot.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DeleteApplication": {
+            "main": "./lib/actions/DeleteApplication.js",
+            "title": "Deletes the specified application. Kinesis Data Analytics halts application execution and deletes the application.",
+            "description": "Deletes the specified application. Kinesis Data Analytics halts application execution and deletes the application.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DeleteApplication.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DeleteApplicationCloudWatchLoggingOption": {
+            "main": "./lib/actions/DeleteApplicationCloudWatchLoggingOption.js",
+            "title": "Deletes an Amazon CloudWatch log stream from an Amazon Kinesis Data Analytics application. ",
+            "description": "Deletes an Amazon CloudWatch log stream from an Amazon Kinesis Data Analytics application. ",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DeleteApplicationCloudWatchLoggingOption.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DeleteApplicationInputProcessingConfiguration": {
+            "main": "./lib/actions/DeleteApplicationInputProcessingConfiguration.js",
+            "title": "Deletes an <a>InputProcessingConfiguration</a> from an input.",
+            "description": "Deletes an <a>InputProcessingConfiguration</a> from an input.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DeleteApplicationInputProcessingConfiguration.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DeleteApplicationOutput": {
+            "main": "./lib/actions/DeleteApplicationOutput.js",
+            "title": "Deletes the output destination configuration from your SQL-based Amazon Kinesis Data Analytics application's configuration. Kinesis Data Analytics will no longer write data from the corresponding in-application stream to the external output destination.",
+            "description": "Deletes the output destination configuration from your SQL-based Amazon Kinesis Data Analytics application's configuration. Kinesis Data Analytics will no longer write data from the corresponding in-application stream to the external output destination.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DeleteApplicationOutput.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DeleteApplicationReferenceDataSource": {
+            "main": "./lib/actions/DeleteApplicationReferenceDataSource.js",
+            "title": "<p>Deletes a reference data source configuration from the specified SQL-based Amazon Kinesis Data Analytics application's configuration.</p> <p>If the application is running, Kinesis Data Analytics immediately removes the in-application table that you created using the <a>AddApplicationReferenceDataSource</a> operation. </p>",
+            "description": "<p>Deletes a reference data source configuration from the specified SQL-based Amazon Kinesis Data Analytics application's configuration.</p> <p>If the application is running, Kinesis Data Analytics immediately removes the in-application table that you created using the <a>AddApplicationReferenceDataSource</a> operation. </p>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DeleteApplicationReferenceDataSource.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DeleteApplicationSnapshot": {
+            "main": "./lib/actions/DeleteApplicationSnapshot.js",
+            "title": "Deletes a snapshot of application state.",
+            "description": "Deletes a snapshot of application state.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DeleteApplicationSnapshot.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DescribeApplication": {
+            "main": "./lib/actions/DescribeApplication.js",
+            "title": "<p>Returns information about a specific Amazon Kinesis Data Analytics application.</p> <p>If you want to retrieve a list of all applications in your account, use the <a>ListApplications</a> operation.</p>",
+            "description": "<p>Returns information about a specific Amazon Kinesis Data Analytics application.</p> <p>If you want to retrieve a list of all applications in your account, use the <a>ListApplications</a> operation.</p>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DescribeApplication.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DescribeApplicationSnapshot": {
+            "main": "./lib/actions/DescribeApplicationSnapshot.js",
+            "title": "Returns information about a snapshot of application state data.",
+            "description": "Returns information about a snapshot of application state data.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DescribeApplicationSnapshot.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DiscoverInputSchema": {
+            "main": "./lib/actions/DiscoverInputSchema.js",
+            "title": "<p>Infers a schema for an SQL-based Amazon Kinesis Data Analytics application by evaluating sample records on the specified streaming source (Kinesis data stream or Kinesis Data Firehose delivery stream) or Amazon S3 object. In the response, the operation returns the inferred schema and also the sample records that the operation used to infer the schema.</p> <p> You can use the inferred schema when configuring a streaming source for your application. When you create an application using the Kinesis Data Analytics console, the console uses this operation to infer a schema and show it in the console user interface. </p>",
+            "description": "<p>Infers a schema for an SQL-based Amazon Kinesis Data Analytics application by evaluating sample records on the specified streaming source (Kinesis data stream or Kinesis Data Firehose delivery stream) or Amazon S3 object. In the response, the operation returns the inferred schema and also the sample records that the operation used to infer the schema.</p> <p> You can use the inferred schema when configuring a streaming source for your application. When you create an application using the Kinesis Data Analytics console, the console uses this operation to infer a schema and show it in the console user interface. </p>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DiscoverInputSchema.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ListApplicationSnapshots": {
+            "main": "./lib/actions/ListApplicationSnapshots.js",
+            "title": "Lists information about the current application snapshots.",
+            "description": "Lists information about the current application snapshots.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ListApplicationSnapshots.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ListApplications": {
+            "main": "./lib/actions/ListApplications.js",
+            "title": "<p>Returns a list of Amazon Kinesis Data Analytics applications in your account. For each application, the response includes the application name, Amazon Resource Name (ARN), and status. </p> <p>If you want detailed information about a specific application, use <a>DescribeApplication</a>.</p>",
+            "description": "<p>Returns a list of Amazon Kinesis Data Analytics applications in your account. For each application, the response includes the application name, Amazon Resource Name (ARN), and status. </p> <p>If you want detailed information about a specific application, use <a>DescribeApplication</a>.</p>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ListApplications.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StartApplication": {
+            "main": "./lib/actions/StartApplication.js",
+            "title": "<p>Starts the specified Amazon Kinesis Data Analytics application. After creating an application, you must exclusively call this operation to start your application.</p> <note> <p>SQL is not enabled for this private beta. Using SQL parameters (such as <a>RunConfiguration$SqlRunConfigurations</a>) will result in an error.</p> </note>",
+            "description": "<p>Starts the specified Amazon Kinesis Data Analytics application. After creating an application, you must exclusively call this operation to start your application.</p> <note> <p>SQL is not enabled for this private beta. Using SQL parameters (such as <a>RunConfiguration$SqlRunConfigurations</a>) will result in an error.</p> </note>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StartApplication.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StopApplication": {
+            "main": "./lib/actions/StopApplication.js",
+            "title": "Stops the application from processing data. You can stop an application only if it is in the running state. You can use the <a>DescribeApplication</a> operation to find the application state. ",
+            "description": "Stops the application from processing data. You can stop an application only if it is in the running state. You can use the <a>DescribeApplication</a> operation to find the application state. ",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StopApplication.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "UpdateApplication": {
+            "main": "./lib/actions/UpdateApplication.js",
+            "title": "<p>Updates an existing Amazon Kinesis Data Analytics application. Using this operation, you can update application code, input configuration, and output configuration. </p> <p>Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you update your application. </p> <note> <p>SQL is not enabled for this private beta. Using SQL parameters (such as <a>SqlApplicationConfigurationUpdate</a>) will result in an error.</p> </note>",
+            "description": "<p>Updates an existing Amazon Kinesis Data Analytics application. Using this operation, you can update application code, input configuration, and output configuration. </p> <p>Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you update your application. </p> <note> <p>SQL is not enabled for this private beta. Using SQL parameters (such as <a>SqlApplicationConfigurationUpdate</a>) will result in an error.</p> </note>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/UpdateApplication.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

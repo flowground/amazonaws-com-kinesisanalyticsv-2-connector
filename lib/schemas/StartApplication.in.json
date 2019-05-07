@@ -1,0 +1,124 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "ApplicationName": {
+                    "description": "The name of the application.",
+                    "maxLength": 128,
+                    "minLength": 1,
+                    "pattern": "[a-zA-Z0-9_.-]+",
+                    "type": "string"
+                },
+                "RunConfiguration": {
+                    "description": "Identifies the run configuration (start parameters) of a Kinesis Data Analytics application.",
+                    "properties": {
+                        "ApplicationRestoreConfiguration": {
+                            "description": "Describes the restore behavior of a restarting application.",
+                            "properties": {
+                                "ApplicationRestoreType": {
+                                    "description": "Specifies how the application should be restored.",
+                                    "enum": [
+                                        "SKIP_RESTORE_FROM_SNAPSHOT",
+                                        "RESTORE_FROM_LATEST_SNAPSHOT",
+                                        "RESTORE_FROM_CUSTOM_SNAPSHOT"
+                                    ],
+                                    "type": "string"
+                                },
+                                "SnapshotName": {
+                                    "description": "The identifier of an existing snapshot of application state to use to restart an application. The application uses this value if <code>RESTORE_FROM_CUSTOM_SNAPSHOT</code> is specified for the <code>ApplicationRestoreType</code>.",
+                                    "maxLength": 128,
+                                    "minLength": 1,
+                                    "pattern": "[a-zA-Z0-9_.-]+",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "ApplicationRestoreType"
+                            ],
+                            "type": "object"
+                        },
+                        "SqlRunConfigurations": {
+                            "description": "Describes the starting parameters for an SQL-based Kinesis Data Analytics application.",
+                            "items": {
+                                "description": "Describes the starting parameters for an SQL-based Kinesis Data Analytics application.",
+                                "properties": {
+                                    "InputId": {
+                                        "description": "The input source ID. You can get this ID by calling the <a>DescribeApplication</a> operation. ",
+                                        "maxLength": 50,
+                                        "minLength": 1,
+                                        "pattern": "[a-zA-Z0-9_.-]+",
+                                        "type": "string"
+                                    },
+                                    "InputStartingPositionConfiguration": {
+                                        "description": "The point at which you want the application to start processing records from the streaming source. ",
+                                        "properties": {
+                                            "InputStartingPosition": {
+                                                "description": "<p>The starting position on the stream.</p> <ul> <li> <p> <code>NOW</code> - Start reading just after the most recent record in the stream, and start at the request timestamp that the customer issued.</p> </li> <li> <p> <code>TRIM_HORIZON</code> - Start reading at the last untrimmed record in the stream, which is the oldest record available in the stream. This option is not available for an Amazon Kinesis Data Firehose delivery stream.</p> </li> <li> <p> <code>LAST_STOPPED_POINT</code> - Resume reading from where the application last stopped reading.</p> </li> </ul>",
+                                                "enum": [
+                                                    "NOW",
+                                                    "TRIM_HORIZON",
+                                                    "LAST_STOPPED_POINT"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "required": [
+                                    "InputId",
+                                    "InputStartingPositionConfiguration"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "required": [
+                "ApplicationName",
+                "RunConfiguration"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

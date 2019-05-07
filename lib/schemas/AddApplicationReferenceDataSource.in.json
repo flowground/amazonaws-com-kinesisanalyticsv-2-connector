@@ -1,0 +1,202 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "ApplicationName": {
+                    "description": "The name of an existing application.",
+                    "maxLength": 128,
+                    "minLength": 1,
+                    "pattern": "[a-zA-Z0-9_.-]+",
+                    "type": "string"
+                },
+                "CurrentApplicationVersionId": {
+                    "description": "The version of the application for which you are adding the reference data source. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned.",
+                    "maximum": 999999999,
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "ReferenceDataSource": {
+                    "description": "The reference data source can be an object in your Amazon S3 bucket. Kinesis Data Analytics reads the object and copies the data into the in-application table that is created. You provide an S3 bucket, object key name, and the resulting in-application table that is created. ",
+                    "properties": {
+                        "ReferenceSchema": {
+                            "description": "Describes the format of the data in the streaming source, and how each data element maps to corresponding columns created in the in-application stream.",
+                            "properties": {
+                                "RecordColumns": {
+                                    "description": "A list of <code>RecordColumn</code> objects. ",
+                                    "items": {
+                                        "description": "<p>For an SQL-based Amazon Kinesis Data Analytics application, describes the mapping of each data element in the streaming source to the corresponding column in the in-application stream.</p> <p>Also used to describe the format of the reference data source.</p>",
+                                        "properties": {
+                                            "Mapping": {
+                                                "description": "A reference to the data element in the streaming input of the reference data source.",
+                                                "type": "string"
+                                            },
+                                            "Name": {
+                                                "description": "The name of the column that is created in the in-application input stream or reference table.",
+                                                "pattern": "[a-zA-Z_][a-zA-Z0-9_]*",
+                                                "type": "string"
+                                            },
+                                            "SqlType": {
+                                                "description": "The type of column created in the in-application input stream or reference table.",
+                                                "minLength": 1,
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "Name",
+                                            "SqlType"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "maxItems": 1000,
+                                    "minItems": 1,
+                                    "type": "array"
+                                },
+                                "RecordEncoding": {
+                                    "description": "Specifies the encoding of the records in the streaming source. For example, UTF-8.",
+                                    "pattern": "UTF-8",
+                                    "type": "string"
+                                },
+                                "RecordFormat": {
+                                    "description": "Specifies the format of the records on the streaming source.",
+                                    "properties": {
+                                        "MappingParameters": {
+                                            "description": "When you configure application input at the time of creating or updating an application, provides additional mapping information specific to the record format (such as JSON, CSV, or record fields delimited by some delimiter) on the streaming source.",
+                                            "properties": {
+                                                "CSVMappingParameters": {
+                                                    "description": "Provides additional mapping information when the record format uses delimiters (for example, CSV).",
+                                                    "properties": {
+                                                        "RecordColumnDelimiter": {
+                                                            "description": "The column delimiter. For example, in a CSV format, a comma (\",\") is the typical column delimiter.",
+                                                            "minLength": 1,
+                                                            "type": "string"
+                                                        },
+                                                        "RecordRowDelimiter": {
+                                                            "description": "The row delimiter. For example, in a CSV format, <i>'\\n'</i> is the typical row delimiter.",
+                                                            "minLength": 1,
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "RecordRowDelimiter",
+                                                        "RecordColumnDelimiter"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "JSONMappingParameters": {
+                                                    "description": "Provides additional mapping information when JSON is the record format on the streaming source.",
+                                                    "properties": {
+                                                        "RecordRowPath": {
+                                                            "description": "The path to the top-level parent that contains the records.",
+                                                            "minLength": 1,
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "RecordRowPath"
+                                                    ],
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "RecordFormatType": {
+                                            "description": "The type of record format.",
+                                            "enum": [
+                                                "JSON",
+                                                "CSV"
+                                            ],
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "RecordFormatType"
+                                    ],
+                                    "type": "object"
+                                }
+                            },
+                            "required": [
+                                "RecordFormat",
+                                "RecordColumns"
+                            ],
+                            "type": "object"
+                        },
+                        "S3ReferenceDataSource": {
+                            "description": "Identifies the S3 bucket and object that contains the reference data. A Kinesis Data Analytics application loads reference data only once. If the data changes, you call the <a>UpdateApplication</a> operation to trigger reloading of data into your application. ",
+                            "properties": {
+                                "BucketARN": {
+                                    "description": "The Amazon Resource Name (ARN) of the S3 bucket.",
+                                    "maxLength": 2048,
+                                    "minLength": 1,
+                                    "pattern": "arn:.*",
+                                    "type": "string"
+                                },
+                                "FileKey": {
+                                    "description": "The object key name containing the reference data.",
+                                    "maxLength": 1024,
+                                    "minLength": 1,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "TableName": {
+                            "description": "The name of the in-application table to create.",
+                            "maxLength": 32,
+                            "minLength": 1,
+                            "pattern": "[a-zA-Z][a-zA-Z0-9_]+",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "TableName",
+                        "ReferenceSchema"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "ApplicationName",
+                "CurrentApplicationVersionId",
+                "ReferenceDataSource"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}
